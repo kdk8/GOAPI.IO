@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kota dan Provinsi</title>
+  </head>
+  <body>
+    <h1>Kota dan Provinsi</h1>
+    <form id="locationForm">
+      <label for="province">Provinsi:</label>
+      <select id="province" name="province">
+        <option value="">Pilih Provinsi</option></select
+      ><br /><br />
+      <label for="city">Kota:</label>
+      <select id="city" name="city">
+        <option value="">Kota</option></select
+      ><br /><br />
+    </form>
+    <div id="selectedLocation"></div>
+
+    <script>
+        const apiUrl = 'https://api.goapi.io/regional/provinsi?api_key=12fb2505-c1cc-563b-7c47-5348e61c';
+function fetchCountries() {
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(bebas => {
+      const dropdown = document.getElementById('province');
+      dropdown.innerHTML = '';
+
+
+      bebas.data.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.id;
+        option.text = country.name;
+        dropdown.add(option);
+      });
+    })
+}
+
+fetchCountries()
+    </script>
+  </body>
+</html>
